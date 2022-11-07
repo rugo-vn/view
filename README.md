@@ -45,6 +45,18 @@ const route = {
 }
 ```
 
+### File System routing
+
+All files below should have `.js` or `.ejs` extenstion. For example, it's using `.ejs` file:
+
+- `index.ejs` -> `GET /`
+- `foo/bar.ejs` -> `GET /foo/bar`
+- `[name].ejs` -> `GET /:name`
+- `[name].html.ejs` -> `GET /:name.html`
+- `[name]/index.ejs` -> `GET /:name`
+
+All file start with underscore `_` will be ignore.
+
 ## Actions
 
 ### `render`
@@ -53,14 +65,14 @@ Input Arguments:
 
 _It takes all arguments from Rugo Server and some news:_
 
-- `viewSchema` schema to get file render.
-- `routes` Pre-defined `routes`, if not specify, it will auto detect from `viewSchema`.
+- `viewModel` schema to get file render.
+- `routes` Pre-defined `routes`, if not specify, it will auto detect from `viewModel`.
 
 Output Arguments:
 
 _It will call `fx.run` to render code. Fx could return string or server response object_
 
-- `schema` schema for file get (`viewSchema`)
+- `model` schema for file get (`viewModel`)
 - `path` path to render file (`route.view`)
 - `locals` additions locals
   + `locals.params` params from config route and parsed route path
