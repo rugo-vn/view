@@ -4,7 +4,9 @@ import { createBroker } from '@rugo-vn/service';
 import { assert, expect } from 'chai';
 
 const DEFAULT_ARGS = {
-  viewModel: 'foo',
+  views: [
+    { use: '/', model: 'foo' },
+  ],
   routes: [
     { method: 'get', path: '/', view: 'home.js', params: { ok: 'bye' } },
     { method: 'patch', path: '/:firstName-:lastName.html', view: 'name.ejs', params: { lastName: 'Joe' } },

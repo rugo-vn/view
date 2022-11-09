@@ -7,8 +7,19 @@ import { NotFoundError } from './exceptions.js';
 
 export const render = async function ({
   method, path, form, query, headers, cookies, params,
-  routes, viewModel
+  routes, views
 }) {
+  let viewModel;
+
+  for (let view of views) {
+    if (path.indexOf(view.use) !== 0)
+      continue;
+
+    path = join('/', path.substring(view.use.length));
+    viewModel = view.model;
+    break;
+  }
+
   if (!routes && !viewModel) { throw new NotFoundError(); }
 
   if (!routes) {

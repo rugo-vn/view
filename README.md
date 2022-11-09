@@ -65,14 +65,14 @@ Input Arguments:
 
 _It takes all arguments from Rugo Server and some news:_
 
-- `viewModel` schema to get file render.
-- `routes` Pre-defined `routes`, if not specify, it will auto detect from `viewModel`.
+- `views` schema to get file render. Ex: `[{ use: 'path', model: 'name' }]`.
+- `routes` Pre-defined `routes`, if not specify, it will auto detect from `views`.
 
 Output Arguments:
 
 _It will call `fx.run` to render code. Fx could return string or server response object_
 
-- `model` schema for file get (`viewModel`)
+- `model` schema for file get (from `views`)
 - `path` path to render file (`route.view`)
 - `locals` additions locals
   + `locals.params` params from config route and parsed route path
