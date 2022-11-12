@@ -7,7 +7,7 @@ import { NotFoundError } from './exceptions.js';
 
 export const render = async function ({
   method, path, form, query, headers, cookies, params,
-  routes, views
+  routes, views, appId,
 }) {
   let viewModel;
 
@@ -48,6 +48,7 @@ export const render = async function ({
   delete route.view;
 
   const result = await this.call('fx.run', {
+    appId,
     path: view,
     model: viewModel,
     locals: {
