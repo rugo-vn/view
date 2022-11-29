@@ -1,19 +1,18 @@
 import { join } from 'path';
-import { FsId } from '@rugo-vn/service';
 import { mergeDeepLeft } from 'ramda';
+import { FsId } from '@rugo-vn/service';
+import { NotFoundError } from '@rugo-vn/exception';
 
 import { matchRoute } from './utils.js';
-import { NotFoundError } from './exceptions.js';
 
 export const render = async function ({
   method, path, form, query, headers, cookies, params,
-  routes, views, appId,
+  routes, views, appId
 }) {
   let viewModel;
 
-  for (let view of views) {
-    if (path.indexOf(view.use) !== 0)
-      continue;
+  for (const view of views) {
+    if (path.indexOf(view.use) !== 0) { continue; }
 
     path = join('/', path.substring(view.use.length));
     viewModel = view.model;
