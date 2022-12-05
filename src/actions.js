@@ -36,6 +36,11 @@ export const render = async function ({
             path: join('/', routePath),
             ...route
           };
+        })
+        .sort((a, b) => {
+          if (a.path.indexOf(':') === -1 && b.path.indexOf(':') !== -1) { return -1; }
+          if (a.path.indexOf(':') !== -1 && b.path.indexOf(':') === -1) { return 1; }
+          return a.path > b.path ? 1 : -1;
         });
   }
 
